@@ -141,6 +141,7 @@ export default class NewToolkitPage extends Component {
       <h2>Create a New Toolkit</h2>
     );
   }
+  
   render() {
     return (
       <div className="container" id="uploadToolkit">
