@@ -7,9 +7,9 @@ export class LandingPage extends Component {
         <div className="text-center landing-center">
           <h1>Practical Resistance Alliance X</h1>
 
-          <button type="button" className="btn btn-primary" id="start_button">
-            <a href="/category/index">GET STARTED</a>
-          </button>
+
+            <a href="/category/index" className="btn btn-primary" style={{ padding: "1rem"}}>GET STARTED</a>
+
         </div>
       </div>
     );
