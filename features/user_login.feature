@@ -28,3 +28,13 @@ Feature: User login
     And I press "Login"
     Then I should be on the login page
 
+  Scenario: Cannot access login page after login
+    Given I am on the login page
+    When I fill in "email" with "joe@gmail.com"
+    And I fill in "password" with "123"
+    And I press "Login"
+    Then I should be on the category page
+    When I go to the login page
+    Then I should be on the home page
+
+
