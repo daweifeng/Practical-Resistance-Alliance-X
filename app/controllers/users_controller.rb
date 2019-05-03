@@ -60,7 +60,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user_id] = @user.id
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to @user, notice: 'Sign Up Success.' }
         format.json { render :show, status: :created, location: @user }
       else
         @info = {:title => "New User", :button_name => "Sign Up", :new_user => true}

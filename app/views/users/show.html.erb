@@ -1,4 +1,8 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <div class="alert alert-success" style="text-align:center;">
+    <span><%= notice %></span>
+  </div>
+<% end %>
 <div class="container mt-5">
   <div class="w-75 mx-auto">
     <h1><%= @user.firstName + "'s Dashboard"%></h1>
