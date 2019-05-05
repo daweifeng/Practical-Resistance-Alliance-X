@@ -26,9 +26,9 @@ describe ToolkitController do
             stoolkit["overview"] = "overview"
             stoolkit["id"] = toolkit.id
             stoolkit["steps"] = { 1 => "content"}
-            put :update, body: stoolkit.to_json, format: :json, params: {id:toolkit.id}
+            post :update, body: stoolkit.to_json, format: :json, params: {id:toolkit.id}
 
-            expect(response).to redirect_to("/category/"+ toolkit.category + "/"+ toolkit.id.to_s)
+            expect(response).to redirect_to("/toolkit/"+ toolkit.id.to_s)
         end
     end
     describe ".search" do
