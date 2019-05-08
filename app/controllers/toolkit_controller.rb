@@ -27,9 +27,13 @@ class ToolkitController < ApplicationController
     end
     @toolkit = Toolkit.where(id: params[:id]).first
     @steps = @toolkit.steps.order({:number => :asc})
-    # @intermediate = @toolkit.intermediates
   end
 
+  def display
+    @id = params[:id]
+    @toolkit = Toolkit.where(id: @id).first
+    @steps = @toolkit.steps.order({:number => :asc})
+  end
 
   def delete
     @toolkit = Toolkit.where(id: params[:id]).destroy_all
@@ -65,15 +69,18 @@ class ToolkitController < ApplicationController
     query.each do |q|
         @categories.push(q)
     end
-    puts @categories
   end
 
   def search
     query = params[:search].presence && params[:search][:query].presence
     if !query.nil?
       search = params[:search][:query]
-      puts search
-      @search_results = Toolkit.where("lower(title) LIKE lower(?)", "%#{search}%")
+      @toolkit_results = Toolkit.where("lower(title) LIKE lower(?)", "%#{search}%").uniq
+      @categories = Category.where("lower(name) LIKE lower(?)", "%#{search}%").select(:name).map(&:name).uniq
+      @category_results = []
+      @categories.each do |q|
+        @category_results.push(q)
+      end
     end
   end
 
