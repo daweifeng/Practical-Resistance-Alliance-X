@@ -7,7 +7,6 @@ export default class NewToolkitPage extends Component {
     super(props);
 
     this.stepsRef = React.createRef();
-    // this.intermediateRef = React.createRef();
     const { edit, toolkit } = this.props;
 
     this.state = {
