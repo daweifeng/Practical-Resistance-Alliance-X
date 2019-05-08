@@ -1,26 +1,30 @@
 import React, { Component } from "react";
 import NewStepComponent from "./NewStepComponent";
+import NewCategoryPage from "./NewCategoryPage";
 
 export default class NewToolkitPage extends Component {
   constructor(props) {
     super(props);
 
     this.stepsRef = React.createRef();
-    const { edit } = this.props;
-    const { toolkit } = this.props;
+    // this.intermediateRef = React.createRef();
+    const { edit, toolkit } = this.props;
+
     this.state = {
       edit,
       categories: this.props.categories,
       title: edit ? toolkit.title : "",
       overview: edit ? toolkit.overview : "",
-      category: edit ? toolkit.category : ""
+      selected_categories: []
+      
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
   }
 
   renderCategories() {
     return this.state.categories.map(category => {
-      return <option key={category}>{category}</option>;
+      return <div> <input type="checkbox" key={category} value={category} /> {category} <br></br> </div>
     });
   }
 
@@ -28,14 +32,31 @@ export default class NewToolkitPage extends Component {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   }
+
+  handleCheckboxChange(e) {
+    const { value } = e.target;
+    if (e.target.checked) {
+      // this.setState({selected_categories: this.state.selected_categories.concat([e.target.value])});
+      this.setState( prevState => ({
+        selected_categories : [...prevState.selected_categories, value] 
+      }));
+    } else {
+      this.setState( prevState => ({
+        selected_categories : prevState.selected_categories.filter(category => category != value)
+      }));
+    }
+  }
+
   handleOnSubmit(e) {
     e.preventDefault();
     // pack data
     const { steps } = this.stepsRef.current.state;
+    // const { intermediates } = this.intermediateRef.current.state;
     const toolkit_data = {
       title: this.state.title,
       overview: this.state.overview,
-      category: this.state.category,
+      // category: this.state.category,
+      categories: this.state.selected_categories,
       steps
     };
     if (this.state.edit) {
@@ -99,16 +120,14 @@ export default class NewToolkitPage extends Component {
   renderFormCategory() {
     return (
       <div className="form-group">
-        <label htmlFor="categoryTag">Category:</label>
-        <select
+        <label htmlFor="categoryTag">Categories:</label>
+        <form
           className="form-control"
-          name="category"
-          onChange={this.handleChange}
-          value={this.state.category}
+          name="categories"
+          onChange={this.handleCheckboxChange}
         >
-          <option value="">-- Please Choose a Category --</option>
           {this.renderCategories()}
-        </select>
+        </form>
       </div>
     );
   }

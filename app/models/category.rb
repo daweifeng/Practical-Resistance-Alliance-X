@@ -1,4 +1,5 @@
 class Category < ApplicationRecord
-    has_many :toolkits, :dependent => :destroy
+    has_many :intermediates
+    has_many :toolkits, through: :intermediates, dependent: :destroy
 end
   

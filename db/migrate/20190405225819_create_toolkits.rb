@@ -3,7 +3,7 @@ class CreateToolkits < ActiveRecord::Migration[5.2]
     create_table :toolkits do |t|
       t.string :title
       t.string :author
-      t.string :category
+      # t.string :category
       t.text :overview
 
       t.timestamps

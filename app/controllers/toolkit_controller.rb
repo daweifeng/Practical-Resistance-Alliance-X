@@ -7,19 +7,29 @@ class ToolkitController < ApplicationController
     @toolkit = Toolkit.create!({
       :title => @toolkit_data["title"], 
       :author => "Unknown", 
-      :category => @toolkit_data["category"],
       :overview => @toolkit_data["overview"]
     })
     @toolkit_data["steps"].each {|step, content|
-      @toolkit.steps.create({:content => content, :number => step})
+      @toolkit.steps.create!({:content => content, :number => step})
     }
-    redirect_to "/category/"+@toolkit.category+"/"+@toolkit.id.to_s
+    @toolkit_data["categories"].each {|category|
+      @intermediate = @toolkit.intermediates.build(:category => Category.where(name: category).first)
+      @intermediate.save
+    }
+    redirect_to "/toolkit/" + @toolkit.id.to_s
   end
 
   def edit
+    query = Category.select(:name).map(&:name).uniq
+    @categories = []
+    query.each do |q|
+        @categories.push(q)
+    end
     @toolkit = Toolkit.where(id: params[:id]).first
     @steps = @toolkit.steps.order({:number => :asc})
+    # @intermediate = @toolkit.intermediates
   end
+
 
   def delete
     @toolkit = Toolkit.where(id: params[:id]).destroy_all
@@ -32,18 +42,21 @@ class ToolkitController < ApplicationController
     @stoolkit = Stoolkit.create!({
      :title => @toolkit_data["title"],
      :author => "Unknown",
-     :category => @toolkit_data["category"],
+    #  :category => @toolkit_data["category"],
      :overview => @toolkit_data["overview"],
      :toolkit_id => @toolkit.id
     })
-
     @toolkit_data["steps"].each {|step, content|
       puts "content type", content.class
       @stoolkit.ssteps.create({:content => content, :number => step})
     }
     @stoolkit.save()
+    @toolkit_data["categories"].each {|category|
+      @intermediate = @toolkit.intermediates.build(:category => Category.where(name: category).first)
+      @intermediate.save
+    }
     flash[:notice] = "Modification success and is now under review"
-    redirect_to "/category/"+@toolkit.category+"/"+@toolkit.id.to_s
+    redirect_to "/toolkit/" + @toolkit.id.to_s
   end
 
   def new

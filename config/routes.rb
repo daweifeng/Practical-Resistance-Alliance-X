@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'category/index'
   get 'welcome/index'
   get 'category/:kind', to: 'category#show'
-  get 'category/:kind/:id', to: 'category#display'
+  get 'toolkit/:id', to: 'toolkit#display'
   get 'newtoolkit', to: 'toolkit#new'
   get 'newcategory', to: 'category#new'
   get 'signup', to: 'users#new', as: 'signup'
