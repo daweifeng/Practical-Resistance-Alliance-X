@@ -34,16 +34,28 @@ export class SearchResults extends Component {
   render() {
     return (
       <div>
+        <div className="toolkits-list-header pt-5">
+          <i className="fa fa-search" aria-hidden="true" />
+          <h1>Search Results for '{this.props.search_term}'</h1>
+          <hr />
+        </div>
+        <div className="container py-5">
+          <div className="row">
+            <h5>Relevant Categories</h5>
+          </div>
+          <div className="row">
+            {this.renderCards()}
+          </div>
+        </div>
         <div className="container">
+          <div className="row">
+            <h5>Relevant Toolkits</h5>
+          </div>
           <div className="row">
             {renderToolkitList(this.state)}
           </div>
         </div>
-        <div className="container py-5">
-          <div className="row">
-            {this.renderCards()}
-          </div>
-          </div>
+        
       </div>
     );
   }

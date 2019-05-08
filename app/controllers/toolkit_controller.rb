@@ -74,9 +74,9 @@ class ToolkitController < ApplicationController
   def search
     query = params[:search].presence && params[:search][:query].presence
     if !query.nil?
-      search = params[:search][:query]
-      @toolkit_results = Toolkit.where("lower(title) LIKE lower(?)", "%#{search}%").uniq
-      @categories = Category.where("lower(name) LIKE lower(?)", "%#{search}%").select(:name).map(&:name).uniq
+      @search_term = params[:search][:query]
+      @toolkit_results = Toolkit.where("lower(title) LIKE lower(?)", "%#{@search_term}%").uniq
+      @categories = Category.where("lower(name) LIKE lower(?)", "%#{@search_term}%").select(:name).map(&:name).uniq
       @category_results = []
       @categories.each do |q|
         @category_results.push(q)
