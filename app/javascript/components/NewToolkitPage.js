@@ -121,7 +121,7 @@ export default class NewToolkitPage extends Component {
       <div className="form-group">
         <label htmlFor="categoryTag">Categories:</label>
         <form
-          className="form-control"
+          className="form-check"
           name="categories"
           onChange={this.handleCheckboxChange}
         >
