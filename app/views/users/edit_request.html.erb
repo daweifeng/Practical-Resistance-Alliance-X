@@ -1,16 +1,26 @@
 <table>
-  <% @result.each do |toolkit| %>
+    <% @result.each do |toolkit| %>
     <tr>
-      <td><h1><%= toolkit[0].title %></h1></td>
-	<td><h1><%= toolkit[1].title %></h1></td>
+        <td><h1>CURRENT VERSION</h1></td>
+	<td><h1>UPDATED VERSION</h1></td>
     </tr>
+    
+    <tr>
+      <td><h1><%= toolkit[1].title %></h1></td>
+	<td><h1><%= toolkit[0].title %></h1></td>
+    </tr>
+    <tr>
+      <td><%= toolkit[1].overview %></td>
+	<td><%= toolkit[0].overview %></td>
+    </tr>
+
     <% if toolkit[1].steps.count > toolkit[0].ssteps.count %>
       <%= toolkit[1].steps.zip(toolkit[0].ssteps) do |a1, a2| %>
-        <tr><td><%= a1 ? a1.content : ''  %></td><td><%= a2 ? a2.content : '' %></td></tr>
+          <tr><td><ul><li><%= a1 ? a1.content : 'NOT AVAILABLE IN THIS VERSION'  %></li></ul></td><td><ul><li><%= a2 ? a2.content : 'NOT AVAILABLE IN THIS VERSION' %></li></ul></td></tr>
       <% end %>
     <% else %>
       <%= toolkit[0].ssteps.zip(toolkit[1].steps) do |a2, a1| %>
-        <tr><td><%= a1 ? a1.content : ''  %></td><td><%= a2 ? a2.content : '' %></td></tr>
+          <tr><td><ul><li><%= a1 ? a1.content : 'NOT AVAILABLE IN THIS VERSION'  %></li></ul></td><td><ul><li><%= a2 ? a2.content : 'NOT AVAILABLE IN THIS VERSION' %></li></ul></td></tr>
       <% end %>
     <% end %>
 	<tr>
