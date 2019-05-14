@@ -46,7 +46,7 @@ class ToolkitController < ApplicationController
     @stoolkit = Stoolkit.create!({
      :title => @toolkit_data["title"],
      :author => "Unknown",
-    #  :category => @toolkit_data["category"],
+     :category => "Unknown",
      :overview => @toolkit_data["overview"],
      :toolkit_id => @toolkit.id
     })
@@ -55,10 +55,7 @@ class ToolkitController < ApplicationController
       @stoolkit.ssteps.create({:content => content, :number => step})
     }
     @stoolkit.save()
-    @toolkit_data["categories"].each {|category|
-      @intermediate = @toolkit.intermediates.build(:category => Category.where(name: category).first)
-      @intermediate.save
-    }
+    @steps = @toolkit.steps.order({:number => :asc})
     flash[:notice] = "Modification success and is now under review"
     redirect_to "/toolkit/" + @toolkit.id.to_s
   end

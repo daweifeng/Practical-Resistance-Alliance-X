@@ -54,7 +54,6 @@ export default class NewToolkitPage extends Component {
     const toolkit_data = {
       title: this.state.title,
       overview: this.state.overview,
-      // category: this.state.category,
       categories: this.state.selected_categories,
       steps
     };
@@ -67,7 +66,7 @@ export default class NewToolkitPage extends Component {
     let url = this.state.edit
       ? `/toolkit/${this.props.toolkit.id}`
       : "/toolkit";
-    let method = this.state.edit ? "PUT" : "POST";
+    const method = "POST";
     fetch(url, {
       method,
       body: JSON.stringify(toolkit_data),
@@ -117,8 +116,11 @@ export default class NewToolkitPage extends Component {
   }
 
   renderFormCategory() {
-    return (
-      <div className="form-group">
+    if (this.props.edit) {
+      return (<div></div>);
+    } else {
+      return (
+        <div className="form-group">
         <label htmlFor="categoryTag">Categories:</label>
         <form
           className="form-check"
@@ -128,7 +130,8 @@ export default class NewToolkitPage extends Component {
           {this.renderCategories()}
         </form>
       </div>
-    );
+      );
+    }
   }
 
   renderHeader() {

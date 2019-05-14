@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   get 'toolkit/:id/delete', to: 'toolkit#delete', as: 'delete_toolkit'
 
   # put requests
-  put 'toolkit/:id', to: 'toolkit#update'
+  post 'toolkit/:id', to: 'toolkit#update'
 
   resources :toolkit do
     collection do
