@@ -56,7 +56,7 @@ module NavigationHelpers
       '/toolkit/1/edit'
 
     when /^the search results page$/
-      '/toolkit/search'
+      '/search'
     
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

@@ -14,11 +14,11 @@ Feature: Search Bar
 
     And I am on the home page
 
-  ## Scenario: Enter home page
-  ##   Given I am on the home page
-  ##   When I fill in "search_query" with "workshop"
-  ##   Then I press "Search"
-  ##   Then I should be on the search results page
-  ##   And I should see "Law Workshop"
-  ##   And I should see "Law Workshop 2"
-  ##   And I should see "Chinese Workshop"
+   Scenario: Enter home page
+     Given I am on the home page
+     When I fill in "search_query" with "workshop"
+     Then I press "Search"
+     Then I should be on the search results page
+     And I should see "Law Workshop"
+     And I should see "Law Workshop 2"
+     And I should see "Chinese Workshop"
