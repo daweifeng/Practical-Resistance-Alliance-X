@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   # put requests
   post 'toolkit/:id', to: 'toolkit#update'
 
+  post 'search', to: 'toolkit#search'
+
   resources :toolkit do
     collection do
       post :search
