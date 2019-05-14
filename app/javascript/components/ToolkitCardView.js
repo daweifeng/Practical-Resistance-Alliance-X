@@ -29,7 +29,7 @@ export default class ToolkitCardView extends Component {
     let rand = Math.floor(Math.random() * this.state.images.length);
     let randimg = this.state.images[rand];
     let link =
-      "/toolkit/" + this.props.info.id;
+      "/category/" + this.props.info.category + "/" + this.props.info.id;
     return (
       <div
         className="card"

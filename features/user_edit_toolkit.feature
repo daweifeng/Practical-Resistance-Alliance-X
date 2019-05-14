@@ -5,10 +5,10 @@ Feature: User can edit toolkit
   Background: User is logged in and toolkit is loaded in db
     Given the user is loggedin
     Given the following toolkits exist
-      | title            | author | overview    |
-      | Law Workshop     | me     | Lorem Ipsum |
-      | Law Workshop 2   | me     | Lorem Ipsum |
-      | Chinese Workshop | me     | Lorem Ipsum |
+      | title            | author | category | overview    |
+      | Law Workshop     | me     | Law      | Lorem Ipsum |
+      | Law Workshop 2   | me     | Law      | Lorem Ipsum |
+      | Chinese Workshop | me     | Social   | Lorem Ipsum |
 
     Scenario: Go to edit page from toolkit page
       Given I am on the Law Workshop Page

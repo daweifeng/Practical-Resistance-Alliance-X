@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   get 'welcome/index'
   get 'category/:kind', to: 'category#show'
   get 'category/:kind/:id', to: 'category#display'
-  get 'toolkit/:id', to: 'toolkit#display'
   get 'newtoolkit', to: 'toolkit#new'
   get 'newcategory', to: 'category#new'
   get 'signup', to: 'users#new', as: 'signup'
@@ -33,7 +32,7 @@ Rails.application.routes.draw do
   get 'toolkit/:id/delete', to: 'toolkit#delete', as: 'delete_toolkit'
 
   # put requests
-  post 'toolkit/:id', to: 'toolkit#update'
+  put 'toolkit/:id', to: 'toolkit#update'
 
   resources :toolkit do
     collection do

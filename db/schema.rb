@@ -10,22 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_07_131530) do
+ActiveRecord::Schema.define(version: 2019_05_06_003033) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_categories_on_name", unique: true
-  end
-
-  create_table "intermediates", id: false, force: :cascade do |t|
-    t.integer "category_id"
-    t.integer "toolkit_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_intermediates_on_category_id"
-    t.index ["toolkit_id"], name: "index_intermediates_on_toolkit_id"
   end
 
   create_table "ssteps", force: :cascade do |t|
@@ -45,6 +36,7 @@ ActiveRecord::Schema.define(version: 2019_05_07_131530) do
   create_table "stoolkits", force: :cascade do |t|
     t.string "title"
     t.string "author"
+    t.string "category"
     t.text "overview"
     t.integer "toolkit_id"
     t.datetime "created_at", null: false
@@ -54,6 +46,7 @@ ActiveRecord::Schema.define(version: 2019_05_07_131530) do
   create_table "toolkits", force: :cascade do |t|
     t.string "title"
     t.string "author"
+    t.string "category"
     t.text "overview"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

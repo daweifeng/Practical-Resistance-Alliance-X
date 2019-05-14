@@ -18,12 +18,6 @@ describe CategoryController do
             expect(response).to redirect_to("/category/index")            
         end
     end
-    describe ".new" do
-        it "shows the add new category page" do
-            get :new
-            expect(response).to redirect_to("/login")
-        end
-    end
     describe ".show" do
         it "shows toolkits with the specified category" do
             Category.create!({
@@ -38,6 +32,7 @@ describe CategoryController do
             Toolkit.create!({
                 :title => "test title", 
                 :author => "Unknown", 
+                :category => "Law",
                 :overview => "lacdjnasuil"
             })
             get :display, :params => {:kind => "Law", :id => 1}

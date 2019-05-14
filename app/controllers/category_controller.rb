@@ -22,8 +22,7 @@ class CategoryController < ApplicationController
 
   def show
     @kind = params[:kind]
-    @category = Category.where(name: @kind).first
-    @toolkits = @category.toolkits.uniq
+    @toolkits = Toolkit.where(category: @kind)
   end
 
   def display

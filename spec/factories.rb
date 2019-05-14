@@ -12,6 +12,7 @@ FactoryBot.define do
     factory :stoolkit do
       title {"Test Toolkit"}
       author {"123"}
+      category {"123"}
       toolkit
     end
 
@@ -23,5 +24,6 @@ FactoryBot.define do
     factory :toolkit do
       title {"Test Toolkit"}
       author {"123"}
+      category {"123"}
     end
 end
