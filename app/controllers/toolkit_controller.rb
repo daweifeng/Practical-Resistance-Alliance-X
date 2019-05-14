@@ -46,7 +46,6 @@ class ToolkitController < ApplicationController
     @stoolkit = Stoolkit.create!({
      :title => @toolkit_data["title"],
      :author => "Unknown",
-     :category => "Unknown",
      :overview => @toolkit_data["overview"],
      :toolkit_id => @toolkit.id
     })
@@ -66,15 +65,6 @@ class ToolkitController < ApplicationController
     query.each do |q|
         @categories.push(q)
     end
-  end
-
-  def new
-    query = Category.select(:name).map(&:name).uniq
-    @categories = []
-    query.each do |q|
-        @categories.push(q)
-    end
-    puts @categories
   end
 
   def search

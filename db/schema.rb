@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 2019_05_07_131530) do
   create_table "stoolkits", force: :cascade do |t|
     t.string "title"
     t.string "author"
-    t.string "category"
     t.text "overview"
     t.integer "toolkit_id"
     t.datetime "created_at", null: false
