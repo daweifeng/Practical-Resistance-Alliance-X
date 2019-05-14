@@ -5,17 +5,18 @@ Feature: User navigate between pages
 
   Background: toolkits have been add to database
 
+
+    Given the following categories exist
+      | name   |
+      | Law    |
+      | Social |
+
     Given the following toolkits exist
 
       | title            | author | overview    |
       | Law Workshop     | me     | Lorem Ipsum |
       | Law Workshop 2   | me     | Lorem Ipsum |
       | Chinese Workshop | me     | Lorem Ipsum |
-
-    Given the following categories exist
-      | name   |
-      | Law    |
-      | Social |
 
     And I am on the home page
 
@@ -29,10 +30,10 @@ Feature: User navigate between pages
     When I follow "Law"
     Then I should be on the Law page
 
-  ## Scenario: Go to Law Workshop page
-  ##   Given I am on the Law page
-  ##   When I follow "View More"
-  ##   Then I should be on the Law Workshop page
+  Scenario: Go to Law Workshop page
+    Given I am on the Law page
+    When I follow "View More"
+    Then I should be on the Law Workshop page
 
   Scenario: Cannot go to create new toolkit page without login
     Given I am on the Law page
