@@ -20,6 +20,15 @@ export class ToolkitViewer extends Component {
     });
   }
 
+  renderButton(str) {
+    return (
+      <div className={`edit-btn`}>
+        <a href={`/toolkit/${this.props.toolkit.id}/` + str}>
+          {str.toUpperCase()}
+        </a>
+      </div>
+    );
+  }
   renderEditSection() {
     return (
       <div className={`edit-btn-container`}>
@@ -27,14 +36,10 @@ export class ToolkitViewer extends Component {
           <div className={`question`}>
             Would you like to contribute to the toolkit?{" "}
           </div>
-          <div className={`edit-btn`}>
-            <a href={`/toolkit/${this.props.toolkit.id}/edit`}>EDIT</a>
-          </div>
-          {this.props.user && this.props.user.admin && (
-            <div className={`edit-btn`}>
-              <a href={`/toolkit/${this.props.toolkit.id}/delete`}>DELETE</a>
-            </div>
-          )}
+          {this.renderButton("edit")}
+          {this.props.user &&
+            this.props.user.admin &&
+            this.renderButton("delete")}
         </div>
       </div>
     );
