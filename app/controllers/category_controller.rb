@@ -6,7 +6,6 @@ class CategoryController < ApplicationController
     query.each do |q|
         @categories.push(q)
     end
-    puts @categories
   end
 
   def create

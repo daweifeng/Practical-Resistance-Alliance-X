@@ -50,7 +50,6 @@ class ToolkitController < ApplicationController
      :toolkit_id => @toolkit.id
     })
     @toolkit_data["steps"].each {|step, content|
-      puts "content type", content.class
       @stoolkit.ssteps.create({:content => content, :number => step})
     }
     @stoolkit.save()
