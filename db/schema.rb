@@ -32,9 +32,6 @@ ActiveRecord::Schema.define(version: 2019_05_07_131530) do
     t.string "content"
     t.integer "number"
     t.integer "stoolkit_id"
-  create_table "intermediates", id: false, force: :cascade do |t|
-    t.string "toolkit_id"
-    t.string "category_id"
   end
 
   create_table "steps", force: :cascade do |t|
