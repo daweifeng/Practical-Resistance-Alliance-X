@@ -49,7 +49,7 @@ export default class NewCategoryPage extends Component {
         <input
           className="form-control"
           name="name"
-          id="new_category"
+          id="name"
           value={this.state.name}
           onChange={this.handleChange}
           placeholder="Enter the category name here"
