@@ -68,6 +68,15 @@ class ToolkitController < ApplicationController
     end
   end
 
+  def new
+    query = Toolkit.select(:category).map(&:category).uniq
+    @categories = []
+    query.each do |q|
+        @categories.push(q)
+    end
+    puts @categories
+  end
+
   def search
     query = params[:search].presence && params[:search][:query].presence
     if !query.nil?
