@@ -30,7 +30,7 @@
       </ul>
       <div class="form-inline my-2 my-lg-0">
         <%= form_for :search, url: '/search', method: :post do |form| %>
-          <%= form.text_field :query, class: "form-control mr-sm-2", value: params[:search].presence && params[:search][:query] %>
+          <%= form.text_field :query, class: "form-control mr-sm-2", value: params[:search].presence && params[:search][:query], :required => true%>
           <%= form.submit 'Search', class: "btn btn-outline-success my-2 my-sm-0 mx-3" %>
         <% end %>
       </div>
