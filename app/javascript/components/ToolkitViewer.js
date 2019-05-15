@@ -80,10 +80,7 @@ export class ToolkitViewer extends Component {
           <div className="container">{this.renderSteps()}</div>
           <div className={"container"}>{this.renderEditSection()}</div>
           <div className="m-5">
-            <Disqus.DiscussionEmbed
-              shortname={disqusShortname}
-              config={disqusConfig}
-            />
+            <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig}/>
           </div>
         </div>
       </div>

@@ -170,11 +170,7 @@ export default class NewToolkitPage extends Component {
             />
           </div>
           <div className="mx-auto my-3" style={{ width: "100px" }}>
-            <button
-              type="submit"
-              className="btn btn-primary"
-              onClick={this.handleOnSubmit.bind(this)}
-            >
+            <button type="submit" className="btn btn-primary" onClick={this.handleOnSubmit.bind(this)}>
               {this.props.edit ? "Update" : "Submit"}
             </button>
           </div>
