@@ -30,8 +30,17 @@
       </ul>
       <div class="form-inline my-2 my-lg-0">
         <%= form_for :search, url: '/search', method: :post do |form| %>
-          <%= form.text_field :query, class: "form-control mr-sm-2", value: params[:search].presence && params[:search][:query] %>
-          <%= form.submit 'Search', class: "btn btn-outline-success my-2 my-sm-0 mx-3" %>
+          <%= form.text_field :query, id: "myText", class: "form-control mr-sm-2", value: params[:search].presence && params[:search][:query], onkeyup: "btnActivation()" %>
+          <%= form.submit 'Search', id: "submit_button", class: "btn btn-outline-success my-2 my-sm-0 mx-3", disabled: true %>
+          <script type="text/javascript">
+            function btnActivation(){
+              if (!document.getElementById('myText').value.length) {
+                  document.getElementById("submit_button").disabled = true;            
+              } else {
+                  document.getElementById("submit_button").disabled = false;
+              }           
+            }   
+          </script>
         <% end %>
       </div>
       <% if current_user %>
