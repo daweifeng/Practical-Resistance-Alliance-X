@@ -2,7 +2,9 @@ Given /the following toolkits exist/ do |toolkits_table|
   toolkits_table.hashes.each do |toolkit|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that toolkit to the database here.
-    Toolkit.create!(toolkit)
+    @toolkit = Toolkit.create!(toolkit)
+    @intermediate = @toolkit.intermediates.build(:category => Category.where(name: "Law").first)
+    @intermediate.save
   end
 end
 

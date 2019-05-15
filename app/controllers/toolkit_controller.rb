@@ -20,11 +20,7 @@ class ToolkitController < ApplicationController
   end
 
   def edit
-    query = Category.select(:name).map(&:name).uniq
-    @categories = []
-    query.each do |q|
-        @categories.push(q)
-    end
+    @categories = Category.select(:name).map(&:name).uniq
     @toolkit = Toolkit.where(id: params[:id]).first
     @steps = @toolkit.steps.order({:number => :asc})
   end
@@ -50,7 +46,6 @@ class ToolkitController < ApplicationController
      :toolkit_id => @toolkit.id
     })
     @toolkit_data["steps"].each {|step, content|
-      puts "content type", content.class
       @stoolkit.ssteps.create({:content => content, :number => step})
     }
     @stoolkit.save()
@@ -60,11 +55,7 @@ class ToolkitController < ApplicationController
   end
 
   def new
-    query = Category.select(:name).map(&:name).uniq
-    @categories = []
-    query.each do |q|
-        @categories.push(q)
-    end
+    @categories = Category.select(:name).map(&:name).uniq
   end
 
   def search
@@ -72,11 +63,7 @@ class ToolkitController < ApplicationController
     if !query.nil?
       @search_term = params[:search][:query]
       @toolkit_results = Toolkit.where("lower(title) LIKE lower(?)", "%#{@search_term}%").uniq
-      @categories = Category.where("lower(name) LIKE lower(?)", "%#{@search_term}%").select(:name).map(&:name).uniq
-      @category_results = []
-      @categories.each do |q|
-        @category_results.push(q)
-      end
+      @category_results = Category.where("lower(name) LIKE lower(?)", "%#{@search_term}%").select(:name).map(&:name).uniq
     end
   end
 

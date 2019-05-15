@@ -37,6 +37,9 @@ class UsersController < ApplicationController
       hash.delete("stoolkit_id")
       toolkit.steps.create(hash)
     end
+    toolkit.overview = stoolkit.overview
+    toolkit.title = stoolkit.title
+    toolkit.save
     Stoolkit.destroy(params[:stoolkit_id])
     redirect_to edit_request_path
   end

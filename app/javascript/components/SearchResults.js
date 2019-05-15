@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import ToolkitCardView from "./ToolkitCardView";
 import { renderToolkitList } from "./ToolkitsListPage";
+<<<<<<< HEAD
 // import { renderCards } from "./CategoryPage";
+=======
+import { renderCards } from "./CategoryPage";
+>>>>>>> 40153d279adea22a912b84447d4d4b525c5f518e
 export class SearchResults extends Component {
   constructor(props) {
     super(props);
@@ -12,6 +16,7 @@ export class SearchResults extends Component {
       backgroundColor: ["#02b3e4", "#BF4C69", "#44A094", "#F4A54D", "#A36CDC"]
     };
   }
+<<<<<<< HEAD
   renderCards() {
     const backgroundColor = this.state.backgroundColor;
     return this.state.categoryList.map((category, index) => {
@@ -30,6 +35,21 @@ export class SearchResults extends Component {
         </div>
       );
     });
+=======
+  renderElements(str) {
+    return (
+      <div className="container py-5">
+        <div className="row">
+          <h5>Relevant {str}</h5>
+        </div>
+        <div className="row">
+          {str == "Categories"
+            ? renderCards(this.state)
+            : renderToolkitList(this.state)}
+        </div>
+      </div>
+    );
+>>>>>>> 40153d279adea22a912b84447d4d4b525c5f518e
   }
   render() {
     return (
@@ -38,6 +58,7 @@ export class SearchResults extends Component {
           <i className="fa fa-search" aria-hidden="true" />
           <h1>Search Results for '{this.props.search_term}'</h1>
           <hr />
+<<<<<<< HEAD
         </div>
         <div className="container py-5">
           <div className="row">
@@ -56,6 +77,11 @@ export class SearchResults extends Component {
           </div>
         </div>
         
+=======
+        </div>
+        {this.renderElements("Categories")}
+        {this.renderElements("Toolkits")}
+>>>>>>> 40153d279adea22a912b84447d4d4b525c5f518e
       </div>
     );
   }

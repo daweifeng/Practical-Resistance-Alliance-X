@@ -29,7 +29,7 @@ module NavigationHelpers
       '/category/Law'
 
     when /^the Law Workshop\s?page$/
-      '/category/Law/1'
+      '/toolkit/1'
 
     when /^the login\s?page$/
       '/login'

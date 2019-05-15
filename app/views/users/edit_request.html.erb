@@ -1,21 +1,41 @@
-<table>
-  <% @result.each do |toolkit| %>
-    <tr>
-      <td><h1><%= toolkit[0].title %></h1></td>
-	<td><h1><%= toolkit[1].title %></h1></td>
-    </tr>
-    <% if toolkit[1].steps.count > toolkit[0].ssteps.count %>
-      <%= toolkit[1].steps.zip(toolkit[0].ssteps) do |a1, a2| %>
-        <tr><td><%= a1 ? a1.content : ''  %></td><td><%= a2 ? a2.content : '' %></td></tr>
+<% if @result != []%>
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr style="text-align:center">
+        <th scope="col"><h4>Old Version</h4></th>
+        <th scope="col"><h4>Edited Version</h4></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @result.each do |toolkit| %>
+        <tr class="table-primary" style="text-align:center">
+          <td><h5><%= toolkit[0].title %></h5></td>
+          <td><h5><%= toolkit[1].title %></h5></td>
+        </tr>
+        <% if toolkit[1].steps.count > toolkit[0].ssteps.count %>
+          <%= toolkit[1].steps.zip(toolkit[0].ssteps) do |a1, a2| %>
+            <tr>
+              <td><%= a1 ? a1.content : ''  %></td>
+              <td><%= a2 ? a2.content : '' %></td>
+            </tr>
+          <% end %>
+        <% else %>
+          <%= toolkit[0].ssteps.zip(toolkit[1].steps) do |a2, a1| %>
+            <tr>
+              <td><strong><%= "step" + a2.number.to_s + ": "%></strong><%= a1 ? a1.content : ''  %></td>
+              <td><strong><%= "step" + a2.number.to_s + ": "%></strong><%= a2 ? a2.content : '' %></td>
+            </tr>
+          <% end %>
+        <% end %>
+        <tr style="text-align:center">
+          <td><%= button_to "Keep Old Version", keep_old_path(:stoolkit_id => toolkit[0].id), :class => 'btn btn-secondary'%></td>
+          <td><%= button_to "Accept Changes", keep_new_path(:toolkit_id => toolkit[1].id, :stoolkit_id => toolkit[0].id), :class => 'btn btn-primary'%></td>
+        </tr>
       <% end %>
-    <% else %>
-      <%= toolkit[0].ssteps.zip(toolkit[1].steps) do |a2, a1| %>
-        <tr><td><%= a1 ? a1.content : ''  %></td><td><%= a2 ? a2.content : '' %></td></tr>
-      <% end %>
-    <% end %>
-	<tr>
-		<td><%= button_to "Keep Old Version", keep_old_path(:stoolkit_id => toolkit[0].id)%></td>
-		<td><%= button_to "Accept Changes", keep_new_path(:toolkit_id => toolkit[1].id, :stoolkit_id => toolkit[0].id)%></td>
-	</tr>
-  <% end %>
-</table>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-danger" style="text-align:center;">
+    <span>No Changes to Toolkits Yet...</span>
+  </div>
+<% end %>

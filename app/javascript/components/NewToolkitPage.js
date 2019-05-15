@@ -48,14 +48,21 @@ export default class NewToolkitPage extends Component {
 
   handleOnSubmit(e) {
     e.preventDefault();
+<<<<<<< HEAD
     // pack data
     const { steps } = this.stepsRef.current.state;
+=======
+>>>>>>> 40153d279adea22a912b84447d4d4b525c5f518e
     // const { intermediates } = this.intermediateRef.current.state;
     const toolkit_data = {
       title: this.state.title,
       overview: this.state.overview,
       categories: this.state.selected_categories,
+<<<<<<< HEAD
       steps
+=======
+      steps: this.stepsRef.current.state
+>>>>>>> 40153d279adea22a912b84447d4d4b525c5f518e
     };
     if (this.state.edit) {
       toolkit_data["id"] = this.props.toolkit.id;
@@ -63,17 +70,18 @@ export default class NewToolkitPage extends Component {
     // get csrfToken
     const csrfToken = document.querySelector('[name="csrf-token"]').content;
     // Make request
+<<<<<<< HEAD
     let url = this.state.edit
       ? `/toolkit/${this.props.toolkit.id}`
       : "/toolkit";
+=======
+    let url = this.state.edit ? `/toolkit/${this.props.toolkit.id}` : "/toolkit";
+>>>>>>> 40153d279adea22a912b84447d4d4b525c5f518e
     const method = "POST";
     fetch(url, {
       method,
       body: JSON.stringify(toolkit_data),
-      headers: new Headers({
-        "Content-Type": "application/json",
-        "X-CSRF-Token": csrfToken
-      })
+      headers: new Headers({ "Content-Type": "application/json", "X-CSRF-Token": csrfToken })
     })
       .then(res => {
         if (res.redirected) {
@@ -159,11 +167,7 @@ export default class NewToolkitPage extends Component {
             />
           </div>
           <div className="mx-auto my-3" style={{ width: "100px" }}>
-            <button
-              type="submit"
-              className="btn btn-primary"
-              onClick={this.handleOnSubmit.bind(this)}
-            >
+            <button type="submit" className="btn btn-primary" onClick={this.handleOnSubmit.bind(this)}>
               {this.props.edit ? "Update" : "Submit"}
             </button>
           </div>

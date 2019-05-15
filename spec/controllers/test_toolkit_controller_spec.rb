@@ -3,12 +3,13 @@ require 'rails_helper'
 describe ToolkitController do
     describe ".create" do
         it "creates a toolkit" do
+            category = create(:category)
             toolkit1 = create(:toolkit)
             toolkit_data = Hash.new
             toolkit_data["title"] = "stoolkit"
             toolkit_data["author"] = "Unknown"
             toolkit_data["overview"] = "overview"
-            toolkit_data["categories"] = []
+            toolkit_data["categories"] = ['Law']
             step1 = Hash.new
             step1["content"] = "content1"
             step1["number"] = 1
@@ -20,6 +21,7 @@ describe ToolkitController do
     end
     describe ".edit" do
         it "shows the edit toolkit page" do
+            category = create(:category)
             toolkit = create(:toolkit)
             get :edit, params: {id: toolkit.id}
             expect(response).to redirect_to("/login")
@@ -59,12 +61,14 @@ describe ToolkitController do
     end
     describe ".new" do
         it "shows the add new toolkit page" do
+            category = create(:category)
             get :new
             expect(response).to redirect_to("/login")
         end
     end
     describe ".search" do
         it "finds a searched toolkit by category" do
+            category = create(:category)
             Toolkit.create!({
                 :title => "test title", 
                 :author => "Unknown", 

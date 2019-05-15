@@ -24,4 +24,8 @@ FactoryBot.define do
       title {"Test Toolkit"}
       author {"123"}
     end
+
+    factory :category do 
+      name {"Law"}
+    end
 end

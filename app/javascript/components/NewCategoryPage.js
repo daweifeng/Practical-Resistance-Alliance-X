@@ -53,6 +53,7 @@ export default class NewCategoryPage extends Component {
           value={this.state.name}
           onChange={this.handleChange}
           placeholder="Enter the category name here"
+          required
         />
       </div>
     );
@@ -62,14 +63,10 @@ export default class NewCategoryPage extends Component {
     return (
       <div className="container" id="uploadCategory">
         <h2>Create a New Category</h2>
-        <form role="main">
+        <form role="main" onSubmit={this.handleOnSubmit.bind(this)}>
           {this.renderFormName()}
           <div className="mx-auto my-3" style={{ width: "100px" }}>
-            <button
-              type="submit"
-              className="btn btn-primary"
-              onClick={this.handleOnSubmit.bind(this)}
-            >
+            <button type="submit" className="btn btn-primary">
               Submit
             </button>
           </div>

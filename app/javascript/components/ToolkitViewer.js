@@ -20,40 +20,50 @@ export class ToolkitViewer extends Component {
     });
   }
 
+  renderButton(str) {
+    return (
+      <div className={`edit-btn`}>
+        <a href={`/toolkit/${this.props.toolkit.id}/` + str}>
+          {str.toUpperCase()}
+        </a>
+      </div>
+    );
+  }
   renderEditSection() {
-    if (this.props.user && this.props.user.admin){
-      return (
-          <div className={`edit-btn-container`}>
-            <div className={`edit-btn-card`}>
-              <div className={`question`}>Would you like to contribute to the toolkit? </div>
-              <div className={`edit-btn`}>
-                <a href={`/toolkit/${this.props.toolkit.id}/edit`}>EDIT</a>
-              </div>
-              <div className={`edit-btn`}>
-                <a href={`/toolkit/${this.props.toolkit.id}/delete`}>DELETE</a>
-              </div>
-            </div>
+    return (
+      <div className={`edit-btn-container`}>
+        <div className={`edit-btn-card`}>
+          <div className={`question`}>
+            Would you like to contribute to the toolkit?{" "}
           </div>
-      );
-    }
-    else {
-      return (
-          <div className={`edit-btn-container`}>
-            <div className={`edit-btn-card`}>
-              <div className={`question`}>Would you like to contribute to the toolkit? </div>
-              <div className={`edit-btn`}>
-                <a href={`/toolkit/${this.props.toolkit.id}/edit`}>EDIT</a>
-              </div>
-            </div>
-          </div>
-      );
-    }
+          {this.renderButton("edit")}
+          {this.props.user &&
+            this.props.user.admin &&
+            this.renderButton("delete")}
+        </div>
+      </div>
+    );
+  }
+
+  renderToolkitInfo() {
+    return (
+      <div className="mx-auto w-50 text-center">
+        <div className="text-muted">
+          BY {this.props.toolkit.author}
+          <span className="mx-2">|</span>
+          <span>
+            {moment(this.props.toolkit.updated_at)
+              .format("YYYY-MM-DD")
+              .toString()}
+          </span>
+        </div>
+      </div>
+    );
   }
 
   render() {
     const disqusShortname = "prax-1";
     const disqusConfig = {
-      //url: window.location.href,
       identifier: this.props.toolkit.id,
       title: this.props.toolkit.title
     };
@@ -63,17 +73,7 @@ export class ToolkitViewer extends Component {
           <h1>{this.props.toolkit.title}</h1>
         </div>
         <div className="container">
-          <div className="mx-auto w-50 text-center">
-            <div className="text-muted">
-              BY {this.props.toolkit.author}
-              <span className="mx-2">|</span>
-              <span>
-                {moment(this.props.toolkit.updated_at)
-                  .format("YYYY-MM-DD")
-                  .toString()}
-              </span>
-            </div>
-          </div>
+          {this.renderToolkitInfo()}
           <div className="mx-auto font-weight-light overview">
             <p className="text-secondary">{this.props.toolkit.overview}</p>
           </div>
